@@ -1,4 +1,13 @@
 <x-app-layout>
+    
+    <x-slot name="header">
+        <h2 class="font-bold text-xl text-sky-900 leading-tight">
+            {{ __('Edit - Data Entry Stage') }}
+        </h2>
+    </x-slot>
+
+    @include('partials._workflow')
+
     <x-card class="mt-20 mx-10">
         <form method="POST" action="/freights/{{$freight->id}}" enctype="multipart/form-data">
             @csrf

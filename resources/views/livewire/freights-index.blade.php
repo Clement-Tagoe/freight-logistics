@@ -50,6 +50,9 @@
                     Status
                 </th>
                 <th class="px-4 py-3">
+                    Action
+                </th>
+                <th class="px-4 py-3">
                     Date of Entry
                 </th>
             </tr>

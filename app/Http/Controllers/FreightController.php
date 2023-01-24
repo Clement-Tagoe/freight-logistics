@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Freight;
+use App\Models\ShippingLineRelease;
 use Illuminate\Http\Request;
 
 class FreightController extends Controller
@@ -54,6 +55,7 @@ class FreightController extends Controller
         return view('freights.edit-data-entry', [
             'freight' => $freight,
             'categories' => Category::all(),
+            'shippingLineRelease' => ShippingLineRelease::all(),
         ]);
     }
 
@@ -70,6 +72,31 @@ class FreightController extends Controller
         $freight->update($formFields);
 
         session()->flash('success_message', 'Freight job updated successfully');
+
+        return back();
+    }
+
+    //show edit form for approval
+    public function approve(Freight $freight) {
+        return view('freights.approval', [
+            'freight' => $freight,
+            'categories' => Category::all(),
+        ]);
+    }
+
+    //Approve/Update freight data
+    public function updateApproval(Request $request, Freight $freight) {
+
+        $formFields = $request->validate([
+            'file_number' => 'required|min:4',
+            'bl_number' => 'required',
+            'customer_name' => 'required|min:3',
+            'category_id' => 'required|integer|exists:categories,id',
+        ]);
+
+        $freight->update($formFields);
+
+        session()->flash('success_message', 'Freight job approved successfully');
 
         return back();
     }

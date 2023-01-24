@@ -43,6 +43,7 @@ class FreightsIndex extends Component
                     return $query->where('customer_name', 'like', '%' . $this->search . '%')
                                 ->orWhere('bl_number', 'like', '%' . $this->search . '%');
                 })
+                ->orderBy('file_number', 'DESC')
                 ->latest()
                 ->paginate(10),
             'statuses' => $statuses,

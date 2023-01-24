@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FreightController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShippingLineReleaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,14 @@ Route::post('/freights', [FreightController::class, 'store']);
 Route::get('freights/{freight:slug}/edit', [FreightController::class, 'edit'])->name('freights.edit-step-1');
 
 Route::put('/freights/{freight}', [FreightController::class, 'update'])->name('freights.update-step-1');
+
+Route::get('/freights/{freight:slug}/approve', [FreightController::class, 'approve'])->name('freights.approval');
+
+Route::post('/shipping-line-release', [ShippingLineReleaseController::class, 'store']);
+
+Route::put('/freights/{freight}', [FreightController::class, 'updateApproval'])->name('freights.update-step-2');
+
+Route::get('/shipping-line-release/create', [ShippingLineReleaseController::class, 'create'])->name('freights.create-shipping-line-release');
 
 Route::get('/freights/{freight:slug}', [FreightController::class, 'show'])->name('freights.show');
 

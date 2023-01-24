@@ -1,5 +1,12 @@
 <x-app-layout>
-    <x-card class="mt-20 mx-10">
+
+    <x-slot name="header">
+        <h2 class="font-bold text-xl text-sky-900 leading-tight">
+            {{ __('Create - Data Entry Stage') }}
+        </h2>
+    </x-slot>
+
+    <x-card class="mt-10 mx-10">
         <form action="/freights" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="flex space-x-10 mb-6">
